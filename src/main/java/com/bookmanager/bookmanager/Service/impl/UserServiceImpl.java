@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private BookService bookService;
 
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public User createUser(User user){
         System.out.println(user);
         return userRepository.save(user);

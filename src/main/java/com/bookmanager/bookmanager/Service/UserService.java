@@ -4,6 +4,7 @@ import com.bookmanager.bookmanager.Entity.Book;
 import com.bookmanager.bookmanager.Entity.User;
 import java.util.List;
 public interface UserService {
+    User findByUsername(String username);
     User createUser(User user);
     User getUserById(Integer id);
     List<User> getAllUsers();
