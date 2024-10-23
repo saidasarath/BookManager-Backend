@@ -1,6 +1,7 @@
 package com.bookmanager.bookmanager.security;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -10,28 +11,23 @@ import com.bookmanager.bookmanager.Entity.User;
 
 public class CustomUserDetails implements UserDetails{
 
-    private String username;
-    private String password;
-    private List<GrantedAuthority> authorities;
-    public CustomUserDetails(User user){
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-       // this.authorities = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-
+    private User user;
+    CustomUserDetails(User user){
+        this.user = user;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Collections.emptyList();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
 
     @Override
@@ -53,5 +49,4 @@ public class CustomUserDetails implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-    
 }
